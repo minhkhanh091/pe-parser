@@ -3,6 +3,6 @@
 
 #include "core/PEFile.h"
 
-void load_file_to_buffer(PEFile *pe, const char *file_name);
+__uint8_t *load_file_to_buffer(const char *file_name, size_t *size);
 
 #endif
