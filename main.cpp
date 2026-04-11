@@ -10,7 +10,8 @@ void print_dos_header(PEFile *pe) {
 }
 
 int main(int agc, char *agv[]) {
-	PEFile *pe = parse("./PE-bear.exe");
+	PEParser *pe_parser = new PEParser();
+	PEFile *pe = pe_parser->parse("./PE-bear.exe");
 
 	print_dos_header(pe);
 
