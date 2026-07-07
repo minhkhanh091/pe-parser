@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 
-#include "file_loader.h"
+#include "loader/file_loader.h"
 
 uint8_t* load_file_to_buffer(const char* file_name, size_t* file_sz) {
     FILE* fp = fopen(file_name, "rb");

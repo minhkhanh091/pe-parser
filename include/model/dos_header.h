@@ -14,8 +14,4 @@ typedef struct DOS_HEADER
 	uint32_t e_lfanew;
 } DOS_HEADER;
 
-void parse_dos_header(PE_FILE *pe);
-
-void print_dos_header(DOS_HEADER *dos_header);
-
 #endif
