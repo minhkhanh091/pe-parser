@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 
-#include "FileLoader.h"
+#include "file_loader.h"
 
-__uint8_t *load_file_to_buffer(const char *file_name, size_t *size) {
-    FILE *fp = fopen(file_name, "rb");
+uint8_t* load_file_to_buffer(const char* file_name, size_t* file_sz) {
+    FILE* fp = fopen(file_name, "rb");
 
     if (!fp) {
         printf("[ERROR] An error occured when opening file!!");
@@ -13,12 +14,12 @@ __uint8_t *load_file_to_buffer(const char *file_name, size_t *size) {
 
     /* Caculate file size */
     fseek(fp, 0, SEEK_END);
-    *size = ftell(fp);
+    *file_sz = ftell(fp);
     rewind(fp);
 
     /* Read file bytes file buffer */
-    __uint8_t *buffer = (__uint8_t *)malloc(*size);
-    fread(buffer, 1, *size, fp);
+    uint8_t* buffer = (uint8_t*)malloc(*file_sz);
+    fread(buffer, 1, *file_sz, fp);
 
     return buffer;
 }
