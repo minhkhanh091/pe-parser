@@ -7,6 +7,11 @@
 #include "model/dos_header.h"
 #include "model/nt_header/nt_header.h"
 
+static void cleanup(PE_FILE* pe)
+{
+    free_pe_file(pe);
+}
+
 int main(int argc, char* argv[])
 {
     puts("PE File Parser 1.0\n");
@@ -33,8 +38,9 @@ int main(int argc, char* argv[])
 	puts("\nPE File parsed successfully!\n");
 
     print_dos_header(pe.dos_header);
+	print_nt_header(pe.nt_header);
 
-    free_pe_file(&pe);
+	cleanup(&pe);
 
     return 0;
 }

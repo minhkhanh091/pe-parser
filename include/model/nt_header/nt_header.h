@@ -25,4 +25,8 @@ void free_nt_header(NT_HEADER* nt_header);
 
 void parse_nt_header(PE_FILE* pe);
 
+void print_nt_header(NT_HEADER* nt_header);
+void print_file_header(FILE_HEADER* file_header);
+void print_optional_header(OPTIONAL_HEADER* optional_header);
+
 #endif
