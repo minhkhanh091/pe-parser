@@ -20,4 +20,9 @@ typedef struct NT_HEADER
 	OPTIONAL_HEADER* OptionalHeader;
 } NT_HEADER;
 
+void init_nt_header(NT_HEADER* nt_header);
+void free_nt_header(NT_HEADER* nt_header);
+
+void parse_nt_header(PE_FILE* pe);
+
 #endif

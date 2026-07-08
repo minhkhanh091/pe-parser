@@ -9,7 +9,7 @@ void init_pe_file(PE_FILE* pe, uint8_t* buffer, size_t size)
 {
     pe->buffer = buffer;
     pe->size = size;
-    pe->dos_header = (DOS_HEADER *)malloc(sizeof(DOS_HEADER));
+    pe->dos_header = (DOS_HEADER*)malloc(sizeof(DOS_HEADER));
 	pe->nt_header = (NT_HEADER*)malloc(sizeof(NT_HEADER));
 }
 
@@ -29,6 +29,7 @@ void is_pe_file_valid(PE_FILE* pe)
     if (pe->dos_header->e_magic != 0x5A4D)
     {
         puts("[ERROR] Invalid PE file: incorrect DOS header magic number.\n");
+
 		free_pe_file(pe);
         exit(0);
     }
@@ -40,22 +41,4 @@ void is_pe_file_valid(PE_FILE* pe)
         free_pe_file(pe);
         exit(0);
     }
-}
-
-void parse_dos_header(PE_FILE* pe)
-{
-    pe->dos_header = (DOS_HEADER*)malloc(sizeof(DOS_HEADER));
-    memcpy(pe->dos_header, pe->buffer, sizeof(DOS_HEADER));
-}
-
-void parse_nt_header_signature(PE_FILE* pe)
-{
-    pe->nt_header->Signature = *(uint32_t *)(pe->buffer + pe->dos_header->e_lfanew);
-}
-
-void print_dos_header(DOS_HEADER* dos_header)
-{
-    printf("DOS Header:\n");
-    printf("e_magic: 0x%04x\n", dos_header->e_magic);
-    printf("e_lfanew: 0x%08x\n", dos_header->e_lfanew);
 }

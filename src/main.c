@@ -5,12 +5,7 @@
 #include "loader/file_loader.h"
 #include "model/pe_file.h"
 #include "model/dos_header.h"
-
-
-void processing()
-{
-
-}
+#include "model/nt_header/nt_header.h"
 
 int main(int argc, char* argv[])
 {
@@ -29,14 +24,13 @@ int main(int argc, char* argv[])
 
     PE_FILE pe;
 
-    puts("Initializing PE File...");
+    puts("Initializing PE File...\n");
     init_pe_file(&pe, buffer, file_sz);
 
-    puts("Parsing DOS Header...\n");
     parse_dos_header(&pe);
-	parse_nt_header_signature(&pe);
+    parse_nt_header(&pe);
 
-    is_pe_file_valid(&pe);
+	puts("\nPE File parsed successfully!\n");
 
     print_dos_header(pe.dos_header);
 
