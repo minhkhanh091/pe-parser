@@ -5,6 +5,7 @@
 
 typedef struct DOS_HEADER DOS_HEADER;
 typedef struct NT_HEADER NT_HEADER;
+typedef struct SECTION_HEADER_ARRAY SECTION_HEADER_ARRAY;
 
 typedef struct PE_FILE
 {
@@ -13,6 +14,7 @@ typedef struct PE_FILE
 
 	DOS_HEADER* dos_header;
 	NT_HEADER* nt_header;
+	SECTION_HEADER_ARRAY* section_header_array;
 } PE_FILE;
 
 void init_pe_file(PE_FILE* pe, uint8_t* buffer, size_t size);

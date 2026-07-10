@@ -7,6 +7,7 @@
 #include "model/nt_header/opt_header.h"
 #include "model/pe_file.h"
 #include "model/dos_header.h"
+#include "model/section_header.h"
 
 static void parse_signature(PE_FILE* pe)
 {
@@ -27,7 +28,7 @@ static void init_nt_header(NT_HEADER* nt_header)
 {
 	nt_header->Signature = 0;
 	nt_header->FileHeader = (FILE_HEADER*)malloc(sizeof(FILE_HEADER));
-	 nt_header->OptionalHeader = (OPTIONAL_HEADER*)malloc(sizeof(OPTIONAL_HEADER));
+	nt_header->OptionalHeader = (OPTIONAL_HEADER*)malloc(sizeof(OPTIONAL_HEADER));
 }
 
 void parse_nt_header(PE_FILE *pe)
@@ -41,7 +42,6 @@ void parse_nt_header(PE_FILE *pe)
 
 	// Parsing the File Header
 	puts("Parsing File Header...");
-
 	parse_file_header(pe);
 
 	// Parsing the Optional Header
@@ -66,6 +66,11 @@ void print_file_header(FILE_HEADER* file_header)
 
 void print_optional_header(OPTIONAL_HEADER *opt_header)
 {
+
+
+
+	/* Displaying data directory entries */
+	
 	puts("Data Directory:");
 	for (uint8_t idx = 0; idx < 16; ++idx)
 	{
