@@ -57,14 +57,20 @@ void print_nt_header(NT_HEADER* nt_header)
 	print_optional_header(nt_header->OptionalHeader);
 }
 
-static void print_file_header(FILE_HEADER* file_header)
+void print_file_header(FILE_HEADER* file_header)
 {
 	puts("File Header:");
 	printf("Machine: 0x%04x\n", file_header->Machine);
 	printf("NumberOfSections: %u\n", file_header->NumberOfSections);
 }
 
-static void print_optional_header()
+void print_optional_header(OPTIONAL_HEADER *opt_header)
 {
-
+	puts("Data Directory:");
+	for (uint8_t idx = 0; idx < 16; ++idx)
+	{
+		printf("%s\n", DATA_DIRECTORY_NAMES[idx]);
+		printf("	- Virtual Address: 0x%x\n", opt_header->DataDirectory[idx].VirtualAddress);
+		printf("	- Size: 0x%x\n", opt_header->DataDirectory[idx].Size);
+	}
 }
