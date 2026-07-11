@@ -2,7 +2,7 @@
 
 #include <stdint.h>
 
-const char* DATA_DIRECTORY_NAMES[16] = {
+static const char* DATA_DIRECTORY_NAMES[16] = {
     "Export Table",
     "Import Table",
     "Resource Table",

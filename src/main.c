@@ -5,6 +5,7 @@
 #include "loader/file_loader.h"
 #include "model/pe_file.h"
 #include "model/dos_header.h"
+#include "model/import_directory.h"
 #include "model/nt_header/nt_header.h"
 #include "model/section_header.h"
 
@@ -36,12 +37,14 @@ int main(int argc, char* argv[])
     parse_dos_header(&pe);
     parse_nt_header(&pe);
     parse_section_header_array(&pe);
+    init_import_directory(&pe);
 
 	puts("\nPE File parsed successfully!\n");
 
     print_dos_header(pe.dos_header);
 	print_nt_header(pe.nt_header);
 	print_section_header(pe.section_header_array);
+    print_import_directory(pe.import_directory);
 
 	cleanup(&pe);
 
